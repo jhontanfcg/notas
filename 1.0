@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+#define ESTUDIANTES 3
+
+// Estructura para representar a un estudiante
+struct Estudiante {
+    char nombre[50];
+    float notas[3];
+    float promedio;
+};
+
+// Función para que el profesor ingrese notas para un estudiante
+void ingresarNotas(struct Estudiante *estudiante) {
+    printf("Ingrese las notas para el estudiante %s:\n", estudiante->nombre);
+    for (int i = 0; i < 3; ++i) {
+        printf("Nota %d: ", i + 1);
+        scanf("%f", &estudiante->notas[i]);
+    }
+}
+
+// Función para que un estudiante consulte sus notas
+void consultarNotas(struct Estudiante estudiante) {
+    printf("Notas del estudiante %s:\n", estudiante.nombre);
+    for (int i = 0; i < 3; ++i) {
+        printf("Nota %d: %.2f\n", i + 1, estudiante.notas[i]);
+    }
+}
+
+// Función para que un estudiante conozca el promedio de sus notas
+void conocerPromedio(struct Estudiante estudiante) {
+    float suma = 0;
+    for (int i = 0; i < 3; ++i) {
+        suma += estudiante.notas[i];
+    }
+    estudiante.promedio = suma / 3;
+    printf("Promedio del estudiante %s: %.2f\n", estudiante.nombre, estudiante.promedio);
+}
+
+int main() {
+    // Un profesor y tres estudiantes
+    struct Estudiante estudiantes[ESTUDIANTES];
+    struct Estudiante profesor;
+
+    // Ingresar nombre del profesor
+    printf("Ingrese el nombre del profesor: ");
+    scanf("%s", profesor.nombre);
+
+    // Ingresar nombre de cada estudiante
+    for (int i = 0; i < ESTUDIANTES; ++i) {
+        printf("Ingrese el nombre del estudiante %d: ", i + 1);
+        scanf("%s", estudiantes[i].nombre);
+    }
+
+    // El profesor ingresa notas
+    ingresarNotas(&profesor);
+
+    // Los estudiantes consultan notas y conocen promedio
+    for (int i = 0; i < ESTUDIANTES; ++i) {
+        consultarNotas(estudiantes[i]);
+        conocerPromedio(estudiantes[i]);
+    }
+
+    return 0;
+}
